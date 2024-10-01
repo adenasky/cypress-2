@@ -3,13 +3,19 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+"scripts": {
+  "test:booking:chrome": "npx cypress run --record --spec \"cypress/e2e/Booking/*.cy.js\" --group \"booking\" --browser chrome",
+  "test:login:chrome": "npx cypress run --record --spec \"cypress/e2e/Login/*.cy.js\" --group \"login\" --browser chrome",
+  "test:parallel:chrome": "run-p -c test:booking:chrome test:login:chrome",
+  "test:booking:edge": "npx cypress run --record --spec \"cypress/e2e/Booking/*.cy.js\" --group \"booking\" --browser edge",
+  "test:login:edge": "npx cypress run --record --spec \"cypress/e2e/Login/*.cy.js\" --group \"login\" --browser edge",
+  "test:parallel:edge": "run-p -c test:booking:edge test:login:edge"
+},
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "cypress": "^13.15.0"
+    "cypress": "^13.15.0",
+    "npm-run-all": "^4.1.5"
   }
 }
