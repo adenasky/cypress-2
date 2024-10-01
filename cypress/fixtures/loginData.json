@@ -3,7 +3,6 @@
   "validPassword": "qamid",
   "invalidEmail": "invtest@mail.ru",
   "invalidPassword": "123abc",
-
   "selectors": {
     "email": "[name='email']",
     "password": "[name='password']",

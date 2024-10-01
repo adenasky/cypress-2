@@ -1,8 +1,8 @@
-import testData from "../../fixtures/loginData.json";
+import testData from "../fixtures/loginData.json";
 
 describe("Invalid Log in", () => {
     beforeEach(() => {
-      cy.visit("/admin");
+      cy.visit("/");
     });
 
     it("should fail with invalid email", () => {
@@ -22,17 +22,24 @@ describe("Invalid Log in", () => {
         cy.contains("Авторизоваться").click();
         cy.get('[name="email"]').then((elements) => {
           expect(elements[0].checkValidity()).to.be.false;
-          expect(elements[0].validationMessage).to.be.eql("Заполните это поле.");
-        });
-      });
+          const validationMessage = elements[0].validationMessage;
+          expect(validationMessage).to.be.oneOf([
+          "Заполните это поле.",
+          "Please fill out this field."
+      ]);
+    });
+});
 
     it("should fail with empty password", () => {
         cy.get('[name="email"]').type(testData.validEmail);
         cy.contains("Авторизоваться").click();
         cy.get('[name="password"]').then((elements) => {
           expect(elements[0].checkValidity()).to.be.false;
-          expect(elements[0].validationMessage).to.be.eql("Заполните это поле.");
-        });
-      });
-    
-  });
+          const validationMessage = elements[0].validationMessage;
+          expect(validationMessage).to.be.oneOf([
+          "Заполните это поле.",
+          "Please fill out this field."
+      ]);
+    });
+});
+});

@@ -1,8 +1,8 @@
-import testData from "../../fixtures/loginData.json";
+import testData from "../fixtures/loginData.json";
 
 describe("Valid Log in", () => {
     beforeEach(() => {
-      cy.visit("/admin");
+      cy.visit("/");
     });
 
     it("valid credentials", () => {
